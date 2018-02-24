@@ -1,0 +1,7 @@
+@font-face {
+    font-family: "SentyTEA";
+    src: url("./SentyTEA.ttf");
+    /* IE */
+    src: url("./SentyTEA.ttf") format("truetype");
+    /*non-IE*/
+}
