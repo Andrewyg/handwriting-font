@@ -5,3 +5,8 @@
     src: url("./SentyTEA.ttf") format("truetype");
     /*non-IE*/
 }
+
+* {
+    font-family: "SentyTEA";
+    font-size:150%;
+}
