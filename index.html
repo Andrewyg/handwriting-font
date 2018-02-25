@@ -9,18 +9,20 @@
     <link rel="stylesheet" type="text/css" href="./custom-font.css" />
     <style type="text/css">
         /* Minimal styling to center the editor in this sample */
-/*
+
+        /*
         * {
             font-family: 'SentyTEA';
             font-size:120%;
         }
         */
+
         body {
             padding: 30px;
             display: flex;
             align-items: center;
             text-align: center;
-            
+
         }
 
         .container {
@@ -34,6 +36,13 @@
         <h1>
             <label for="editor1">SentyTEA 字體編輯器</label>
         </h1>
+        <script>
+            if (getdata()) {
+                document.getElementById("editor1").innerHTML = getdata();
+            } else if (getdata(true)) {
+                document.getElementById("editor1").innerHTML = "";
+            }
+        </script>
         <textarea id="editor1">
             <p>Download font <a href="https://github.com/Andrewyg/handwriting-fonts/blob/master/SentyTEA.ttf">here</a>.</p>
             <p>Website source <a href="https://github.com/Andrewyg/handwriting-fonts/tree/gh-pages">here</a>.</p>
@@ -51,7 +60,7 @@
             // The full preset from CDN which we used as a base provides more features than we need.
             // Also by default it comes with a 3-line toolbar. Here we put all buttons in a single row.
             toolbar: [
-                { name: 'document', items: ['Print'] },
+                { name: 'document', items: ['CustomSave', 'Print'] },
                 { name: 'clipboard', items: ['Undo', 'Redo'] },
                 { name: 'styles', items: ['Format', 'FontSize'] },
                 { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting'] },
@@ -61,7 +70,7 @@
                 { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
                 { name: 'insert', items: ['Image', 'Table'] },
                 { name: 'tools', items: ['Maximize'] },
-                { name: 'editing', items: ['Scayt', 'SuperButton'] }
+                { name: 'editing', items: ['Scayt'] }
             ],
 
             // Since we define all configuration options here, let's instruct CKEditor to not load config.js which it does by default.
@@ -145,17 +154,34 @@
                 { name: 'Square Bulleted List', element: 'ul', styles: { 'list-style-type': 'square' } }
             ]
         });
-        editor.addCommand("mySimpleCommand", {
-    exec: function(edt) {
-        alert(edt.getData());
-    }
-});
-editor.ui.addButton('SuperButton', {
-    label: "Click me",
-    command: 'mySimpleCommand',
-    toolbar: 'insert',
-    icon: 'https://avatars1.githubusercontent.com/u/5500999?v=2&s=16'
-});
+        editor.addCommand("customsavecmd", {
+            exec: function (edt) {
+                window.location.href = "https://" + window.location.hostname + "?data=" + edt.getData();
+            }
+        });
+        editor.ui.addButton('CustomSave', {
+            label: "Save the document",
+            command: 'customsave',
+            toolbar: 'insert',
+            icon: 'https://avatars1.githubusercontent.com/u/5500999?v=2&s=16'
+        });
+
+        function getdata(newdoc) {
+            var url = window.location.href;
+            var name;
+            if (newdoc) {
+                name = "new";
+            }
+            else {
+                name = "data";
+            }
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
     </script>
 </body>
 
