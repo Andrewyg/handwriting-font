@@ -29,6 +29,25 @@
             margin: 0 auto;
         }
     </style>
+    <script>
+        
+        function getdata(newdoc) {
+            var url = window.location.href;
+            var name;
+            if (newdoc) {
+                name = "new";
+            }
+            else {
+                name = "data";
+            }
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+    </script>
 </head>
 
 <body>
@@ -165,23 +184,6 @@
             toolbar: 'insert',
             icon: 'https://avatars1.githubusercontent.com/u/5500999?v=2&s=16'
         });
-
-        function getdata(newdoc) {
-            var url = window.location.href;
-            var name;
-            if (newdoc) {
-                name = "new";
-            }
-            else {
-                name = "data";
-            }
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-        }
     </script>
 </body>
 
