@@ -183,6 +183,7 @@
             exec: function (edt) {
                 console.log("saving...");
                 var redirecturl = "https://" + window.location.hostname + "?data=" + edt.getData();
+                redirecturl = redirecturl.replace(/(?:\r\n|\r|\n)/g, '<br />').replace(/ /g, '\u00a0');;
                 console.log(redirecturl);
                 window.location.replace = redirecturl;
             }
