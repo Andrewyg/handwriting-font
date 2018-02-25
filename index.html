@@ -31,9 +31,18 @@
         }
     </style>
     <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
-    <script>
-        
-        function getdata(newdoc) {
+</head>
+
+<body>
+    <div id="cover" style="z-index:999;text-align:center;width:100vw;height:100vh;">
+        Loading...
+    </div>
+    <div class="container">
+        <h1>
+            <label for="editor1">SentyTEA 字體編輯器</label>
+        </h1>
+        <script>
+            function getdata(newdoc) {
             var url = window.location.href;
             var name;
             if (newdoc) {
@@ -49,15 +58,6 @@
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
-    </script>
-</head>
-
-<body>
-    <div class="container">
-        <h1>
-            <label for="editor1">SentyTEA 字體編輯器</label>
-        </h1>
-        <script>
             var docupdate = function() {
                 if (getdata()) {
                     document.getElementById("editor1").innerHTML = getdata();
@@ -197,6 +197,13 @@
             icon: 'https://andrewyg.github.io/handwriting-font/save-button.png'
         });
     </script>
+    var sentyteacheck = new FontFaceObserver("SentyTEA", {
+      weight: 400
+    });
+
+    sentyteacheck.check().then(function() {
+      document.getElementById("cover").style.zIndex = "-999";
+    });
 </body>
 
 </html>
