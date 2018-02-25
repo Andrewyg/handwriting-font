@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
+    <script>loadCSS( './custom-font.css' );</script>
     <title>SentyTEA 字體編輯器</title>
     <link rel="stylesheet" type="text/css" href="./custom-font.css" />
     <style type="text/css">
@@ -29,6 +29,7 @@
             margin: 0 auto;
         }
     </style>
+    <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
     <script>
         
         function getdata(newdoc) {
@@ -56,11 +57,13 @@
             <label for="editor1">SentyTEA 字體編輯器</label>
         </h1>
         <script>
-            if (getdata()) {
-                document.getElementById("editor1").innerHTML = getdata();
-            } else if (getdata(true)) {
-                document.getElementById("editor1").innerHTML = "";
-            }
+            window.onload(function() {
+                if (getdata()) {
+                    document.getElementById("editor1").innerHTML = getdata();
+                } else if (getdata(true)) {
+                    document.getElementById("editor1").innerHTML = "";
+                }
+            });
         </script>
         <textarea id="editor1">
             <p>Download font <a href="https://github.com/Andrewyg/handwriting-fonts/blob/master/SentyTEA.ttf">here</a>.</p>
