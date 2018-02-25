@@ -57,7 +57,7 @@
             <label for="editor1">SentyTEA 字體編輯器</label>
         </h1>
         <script>
-            window.onload(function() {
+            document.onload(function() {
                 if (getdata()) {
                     document.getElementById("editor1").innerHTML = getdata();
                 } else if (getdata(true)) {
@@ -186,7 +186,7 @@
             label: "Save the document",
             command: 'customsavecmd',
             toolbar: 'document',
-            icon: './save-button.png'
+            icon: 'https://andrewyg.github.io/handwriting-font/save-button.png'
         });
     </script>
 </body>
