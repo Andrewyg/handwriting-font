@@ -182,7 +182,9 @@
         editor.addCommand("customsavecmd", {
             exec: function (edt) {
                 console.log("saving...");
-                window.location.href = "https://" + window.location.hostname + "?data=" + edt.getData();
+                var redirecturl = "https://" + window.location.hostname + "?data=" + edt.getData();
+                console.log(redirecturl);
+                window.location.replace = redirecturl;
             }
         });
         editor.ui.addButton('CustomSave', {
