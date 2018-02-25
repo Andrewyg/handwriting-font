@@ -9,11 +9,12 @@
     <link rel="stylesheet" type="text/css" href="./custom-font.css" />
     <style type="text/css">
         /* Minimal styling to center the editor in this sample */
-
+/*
         * {
             font-family: 'SentyTEA';
             font-size:120%;
         }
+        */
         body {
             padding: 30px;
             display: flex;
@@ -45,7 +46,7 @@
         </textarea>
     </div>
     <script>
-        CKEDITOR.replace('editor1', {
+        var editor = CKEDITOR.replace('editor1', {
             // Define the toolbar: http://docs.ckeditor.com/ckeditor4/docs/#!/guide/dev_toolbar
             // The full preset from CDN which we used as a base provides more features than we need.
             // Also by default it comes with a 3-line toolbar. Here we put all buttons in a single row.
@@ -144,6 +145,17 @@
                 { name: 'Square Bulleted List', element: 'ul', styles: { 'list-style-type': 'square' } }
             ]
         });
+        editor.addCommand("mySimpleCommand", {
+    exec: function(edt) {
+        alert(edt.getData());
+    }
+});
+editor.ui.addButton('SuperButton', {
+    label: "Click me",
+    command: 'mySimpleCommand',
+    toolbar: 'insert',
+    icon: 'https://avatars1.githubusercontent.com/u/5500999?v=2&s=16'
+});
     </script>
 </body>
 
