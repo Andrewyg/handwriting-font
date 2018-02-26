@@ -46,12 +46,15 @@
             -------------------------------------------
             <p>Donate monero to wallet: <b>463MNzqpckobCJsr1pDGWkERUTaDjdvXRjMM6MzCRH1wh9jWPmVuLoiZBoeqryqiECCtAL8DzxsPf5xrKKoDswyjPpTYmbu</b></p>
         </textarea>
+        <br />
+        <hr />
         <footer>
-            <div>Icons made by
+            <div><b>Save the document</b> icon made by
                 <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from
                 <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by
                 <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
             </div>
+            <div><b>New document</b> icon made by <a href="https://www.flaticon.com/authors/zurb" title="Zurb">Zurb</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
         </footer>
     </div>
     <script>
@@ -83,7 +86,7 @@
         var editor = CKEDITOR.replace("editor1", {
             toolbar: [{
                 name: "document",
-                items: ["CustomSave", "Print"]
+                items: ["CustomNewFile", "CustomSave", "Print"]
             }, {
                 name: "clipboard",
                 items: ["Undo", "Redo"]
@@ -173,7 +176,7 @@
         });
         editor.addCommand("customsavecmd", {
             exec: function (e) {
-                console.log("saving...");
+                console.log("Saving...");
                 var t = "https://" + window.location.hostname + "/handwriting-font/?data=" + e.getData();
                 t = t.replace(/(?:\r\n|\r|\n)/g, "<br />");
                 t = t.replace(/ /g, " ");
@@ -185,6 +188,17 @@
             command: "customsavecmd",
             toolbar: "document",
             icon: "https://andrewyg.github.io/handwriting-font/save-button.png"
+        });
+        editor.addCommand("customnewfilecmd", {
+            exec: function (e) {
+                console.log("Creating...");
+                window.location.replace("https://andrewyg.github.io/handwriting-font/?new=true");
+            }
+        }), editor.ui.addButton("CustomNewFile", {
+            label: "New document",
+            command: "customnewfilecmd",
+            toolbar: "document",
+            icon: "https://andrewyg.github.io/handwriting-font/newfile-button.png"
         });
     </script>
 </body>
