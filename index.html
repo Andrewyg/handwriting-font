@@ -178,7 +178,7 @@
             exec: function (e) {
                 console.log("Saving...");
                 var t = "https://" + window.location.hostname + "/handwriting-font/?data=" + e.getData();
-                t = t.replace(/(?:\r\n|\r|\n)/g, "");
+                //t = t.replace(/(?:\r\n|\r|\n)/g, "");
                 t = t.replace("<br />", "");
                 while(t.includes("&nbsp;") || t.includes("\u0020")) {
                     t = t.replace("&nbsp;", "%20");
