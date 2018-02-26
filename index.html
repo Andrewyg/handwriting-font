@@ -29,13 +29,6 @@
         }
     </style>
     <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
-</head>
-
-<body>
-    <div class="container">
-        <h1>
-            <label for="editor1">SentyTEA 字體編輯器</label>
-        </h1>
         <script>
             function getdata(newdoc) {
                 var url = window.location.href;
@@ -53,16 +46,6 @@
                 if (!results[2]) return '';
                 return decodeURIComponent(results[2].replace(/\+/g, " "));
             }
-            /*
-            function docupdate() {
-                console.log("Updating content...");
-                if (getdata()) {
-                    document.getElementById("editor1").innerHTML = getdata();
-                } else if (getdata(true)) {
-                    document.getElementById("editor1").innerHTML = "";
-                }
-            }
-            */
             document.onload = function() {
                 console.log("Updating content...");
                 if (getdata()) {
@@ -74,6 +57,13 @@
                 console.log("CKEditor complete...");
             };
         </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>
+            <label for="editor1">SentyTEA 字體編輯器</label>
+        </h1>
         <textarea id="editor1">
             <p>Download font <a href="https://github.com/Andrewyg/handwriting-fonts/blob/master/SentyTEA.ttf">here</a>.</p>
             <p>Website source <a href="https://github.com/Andrewyg/handwriting-fonts/tree/gh-pages">here</a>.</p>
