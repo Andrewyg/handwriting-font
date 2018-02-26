@@ -38,22 +38,22 @@
         </h1>
         <script>
             function getdata(newdoc) {
-            var url = window.location.href;
-            var name;
-            if (newdoc) {
-                name = "new";
+                var url = window.location.href;
+                var name;
+                if (newdoc) {
+                    name = "new";
+                }
+                else {
+                    name = "data";
+                }
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
             }
-            else {
-                name = "data";
-            }
-            name = name.replace(/[\[\]]/g, "\\$&");
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-        }
-            var docupdate = function() {
+            function docupdate() {
                 if (getdata()) {
                     document.getElementById("editor1").innerHTML = getdata();
                 } else if (getdata(true)) {
@@ -72,7 +72,14 @@
             -------------------------------------------
             <p>Donate monero to wallet: <b>463MNzqpckobCJsr1pDGWkERUTaDjdvXRjMM6MzCRH1wh9jWPmVuLoiZBoeqryqiECCtAL8DzxsPf5xrKKoDswyjPpTYmbu</b></p>
         </textarea>
-        <footer><div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div></footer>
+        <footer>
+            <div>Icons made by
+                <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from
+                <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by
+                <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
+                    target="_blank">CC 3.0 BY</a>
+            </div>
+        </footer>
     </div>
     <script>
         var editor = CKEDITOR.replace('editor1', {
