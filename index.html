@@ -178,7 +178,7 @@
                 t = t.replace(/(?:\r\n|\r|\n)/g, "<br />");
                 t = t.replace(/ /g, " ");
                 console.log("Redirecting...");
-                window.location.replace = t;
+                window.location.replace(t);
             }
         }), editor.ui.addButton("CustomSave", {
             label: "Save the document",
