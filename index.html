@@ -180,7 +180,8 @@
                 var t = "https://" + window.location.hostname + "/handwriting-font/?data=" + e.getData();
                 t = t.replace(/(?:\r\n|\r|\n)/g, "<br />");
                 alert(t);
-                t = t.replace("<br%20/><br%20/>", "<br%20/>");
+                t = t.replace("<br /><br />", "<br />");
+                alert(t);
                 //t = t.replace(/ /g, " ");
                 console.log("Redirecting...");
                 window.location.replace(t);
