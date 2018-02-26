@@ -179,6 +179,7 @@
                 console.log("Saving...");
                 var t = "https://" + window.location.hostname + "/handwriting-font/?data=" + e.getData();
                 t = t.replace(/(?:\r\n|\r|\n)/g, "");
+                t = t.replace("<br />", "");
                 alert(t);
                 //t = t.replace("<br /><br />", "");
                 //alert(t);
