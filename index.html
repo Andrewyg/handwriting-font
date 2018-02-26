@@ -53,14 +53,24 @@
                 if (!results[2]) return '';
                 return decodeURIComponent(results[2].replace(/\+/g, " "));
             }
+            /*
             function docupdate() {
+                console.log("Updating content...");
                 if (getdata()) {
                     document.getElementById("editor1").innerHTML = getdata();
                 } else if (getdata(true)) {
                     document.getElementById("editor1").innerHTML = "";
                 }
             }
-            document.onload = docupdate;
+            */
+            document.onload = function() {
+                console.log("Updating content...");
+                if (getdata()) {
+                    document.getElementById("editor1").innerHTML = getdata();
+                } else if (getdata(true)) {
+                    document.getElementById("editor1").innerHTML = "";
+                }
+            };
         </script>
         <textarea id="editor1">
             <p>Download font <a href="https://github.com/Andrewyg/handwriting-fonts/blob/master/SentyTEA.ttf">here</a>.</p>
