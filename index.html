@@ -180,8 +180,9 @@
                 var t = "https://" + window.location.hostname + "/handwriting-font/?data=" + e.getData();
                 //t = t.replace(/(?:\r\n|\r|\n)/g, "");
                 t = t.replace("<br />", "");
-                while(t.includes("&nbsp;") || t.includes("\u0020") || t.includes("%20")) {
+                while(t.includes("&nbsp;") || t.includes("\u0020") || t.includes("%20") || t.includes("\n")) {
                     t = t.replace("&nbsp;", "&nbsp;");
+                    t = t.replace("\n", "");
                     t = t.replace("\u0020", "&nbsp;");
                     t = t.replace("%20", "&nbsp;");
                 }
