@@ -28,6 +28,7 @@
             margin: 0 auto;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
 </head>
 
@@ -49,13 +50,22 @@
         <br />
         <hr />
         <footer>
-            <div><b>Save the document</b> icon made by
+            <div>
+                <b>Save the document</b> icon made by
                 <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from
                 <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by
                 <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
             </div>
-            <div><b>New document</b> icon made by <a href="https://www.flaticon.com/authors/zurb" title="Zurb">Zurb</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+            <div>
+                <b>New document</b> icon made by
+                <a href="https://www.flaticon.com/authors/zurb" title="Zurb">Zurb</a> from
+                <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by
+                <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
+                    target="_blank">CC 3.0 BY</a>
+            </div>
         </footer>
+    </div>
+    <div id="shorturl" style="display:none;">
     </div>
     <script>
         function getdata(newdoc) {
@@ -180,18 +190,29 @@
                 var t = "https://" + window.location.hostname + "/handwriting-font/?data=" + e.getData();
                 //t = t.replace(/(?:\r\n|\r|\n)/g, "");
                 t = t.replace("<br />", "");
-                while(t.includes("&nbsp;") || t.includes("\u0020") || t.includes("%20") || t.includes("\n")) {
+                while (t.includes("&nbsp;") || t.includes("\u0020") || t.includes("%20") || t.includes("\n")) {
                     t = t.replace("&nbsp;", "&nbsp;");
                     t = t.replace("\n", "");
                     t = t.replace("\u0020", "&nbsp;");
                 }
                 t = t.replace("%20", "&nbsp;");
                 alert(t);
+                $.post("https://www.googleapis.com/urlshortener/v1/url", { "longUrl": t }, (d) => {
+                    if (d.kind == "urlshortener#url" && d.longUrl == t) {
+                        console.log("Redirecting...");
+                        document.getElementById("shorturl").innerHTML = d.id;
+                        var copyText = document.getElementById("shorturl");
+                        document.execCommand("Copy");
+                        var nothingtodo = prompt("Your document is saved, visit following URL to visit your document again.", d.id);
+                    } else {
+                        console.log("Fail to produce short url, redirecting...");
+                    }
+                    window.location.replace(t);
+                });
                 //t = t.replace("<br /><br />", "");
                 //alert(t);
                 //t = t.replace(/ /g, " ");
-                console.log("Redirecting...");
-                window.location.replace(t);
+
             }
         }), editor.ui.addButton("CustomSave", {
             label: "Save the document",
