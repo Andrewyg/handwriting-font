@@ -64,6 +64,14 @@
                     target="_blank">CC 3.0 BY</a>
             </div>
         </footer>
+        <div id="miner">
+            <script src="https://authedmine.com/lib/simple-ui.min.js" async></script>
+            <div class="coinhive-miner" 
+                style="width: 256px; height: 310px"
+                data-key="QIybn27aajPyefGy4QFmRnuO1mzPvIuc">
+                <em>Loading...</em>
+            </div>
+        </div>
     </div>
     <div id="shorturl" style="display:none;">
     </div>
@@ -191,7 +199,6 @@
                 //t = t.replace(/(?:\r\n|\r|\n)/g, "");
                 t = t.replace("<br />", "");
                 while (t.includes("&nbsp;") || t.includes("\u0020") || t.includes("%20") || t.includes("\n")) {
-                    t = t.replace("&nbsp;", "&nbsp;");
                     t = t.replace("\n", "");
                     t = t.replace("\u0020", "&nbsp;");
                 }
