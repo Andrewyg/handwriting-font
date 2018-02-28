@@ -204,7 +204,7 @@
                     t = t.replace("\u0020", "%20");
                     t = t.replace("&nbsp;", "%20");
                 }
-                t = t.replace("%20", "&nbsp;");
+                t = t.replace("%20%20", "%20&nbsp;");
                 alert(t);
                 $.post("https://www.googleapis.com/urlshortener/v1/url", { "longUrl": t }, (d) => {
                     console.log(d);
